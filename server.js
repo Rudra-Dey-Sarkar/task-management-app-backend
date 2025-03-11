@@ -4,12 +4,9 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
-
-
 // Import custom modules
 const ConnectDB = require("./src/config/db");
 const tasksSchemaModel = require("./src/models/tasks");
-
 
 // Define CORS options to allow cross-origin requests
 const corsOptions = {
