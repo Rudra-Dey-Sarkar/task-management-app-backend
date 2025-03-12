@@ -43,7 +43,7 @@ app.get("/tasks", async (req, res) => {
     }
 })
 // Route to add new task
-app.post("/add-task", async (req, res) => {
+app.post("/tasks", async (req, res) => {
     const { name, status } = req.body;
     const datas = {
         name: name,
@@ -63,8 +63,9 @@ app.post("/add-task", async (req, res) => {
     }
 })
 // Route to edit a specific task
-app.put("/edit-task", async (req, res) => {
-    const { id, ...allData } = req.body;
+app.put("/tasks/:id", async (req, res) => {
+    const {id} = req.params;
+    const {...allData } = req.body;
 
     try {
         const response = await tasksSchemaModel.findOneAndUpdate(
@@ -84,8 +85,8 @@ app.put("/edit-task", async (req, res) => {
     }
 })
 // Route to remove a specific task
-app.delete("/remove-task", async (req, res)=>{
-    const { id } = req.body;
+app.delete("/tasks/:id", async (req, res)=>{
+    const { id } = req.params;
 
     try {
         const response = await tasksSchemaModel.findOneAndDelete({_id:id});
